@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "clean-dist": "rm -rf ./dist",
+    "build": "npm run clean-dist && tsc",
+    "prestart": "npm run build",
+    "start": "node dist/app.js",
+    "dev": "nodemon"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.10.1",
+    "crypto": "^1.0.1",
+    "express": "^5.1.0",
+    "zod-to-json-schema": "^3.24.5"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.0",
+    "typescript": "^5.8.3"
+  },
+  "keywords": [],
+  "author": "Arjun TS",
+  "license": "ISC"
+}

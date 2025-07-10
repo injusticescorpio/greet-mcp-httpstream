@@ -37,6 +37,13 @@ router.get(MCP_ENDPOINT, async (req: Request, res: Response) => {
     await server.handleGetRequest(req, res)
 })
 
+router.delete(MCP_ENDPOINT, async (req: Request, res: Response) => {
+    await server.handleDeleteRequest(req,res)
+})
+
+
+
+
 
 app.use('/', router)
 

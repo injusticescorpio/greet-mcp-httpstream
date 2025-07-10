@@ -209,6 +209,23 @@ export class MCPServer {
         }
     
     }
+    async handleDeleteRequest(req:Request,res:Response){
+        const sessionId = req.headers['mcp-session-id'] as string | undefined;
+        if (!sessionId || !this.transports[sessionId]) {
+          res.status(400).send('Invalid or missing session ID')
+          return
+        }
+        console.log(`Received session termination request for session ${sessionId}`)
+        try {
+            const transport = this.transports[sessionId];
+            await transport.handleRequest(req, res);
+          } catch (error) {
+            console.error('Error handling session termination:', error);
+            if (!res.headersSent) {
+              res.status(500).send('Error processing session termination');
+            }
+        }
+    }
 
     async cleanup(){
         this.toolInterval?.close()
